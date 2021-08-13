@@ -1,8 +1,11 @@
-all: tinymembench
+CC=aarch64-linux-android-gcc
 
-ifdef WINDIR
-	CC = gcc
-endif
+## use local path to build for 8155 android. 
+CFLAGS += -Wall -pedantic -I -DHAVE___FPENDING -DTIME  -pie -fPIE \
+		  -I/work/g7/lagvm_p/LINUX/android/out/soong/ndk/sysroot/usr/include -I /work/g7/lagvm_p/LINUX/android/out/soong/ndk/sysroot/usr/include/aarch64-linux-android/ \
+		  --sysroot=/work/g7/lagvm_p/LINUX/android/prebuilts/ndk/r16/platforms/android-24/arch-arm64/ \
+		   -L /work/g7/lagvm_p/LINUX/android/out/soong/ndk/platforms/android-24/arch-arm64/usr/lib
+
 
 tinymembench: main.c util.o util.h asm-opt.h version.h asm-opt.o x86-sse2.o arm-neon.o mips-32.o aarch64-asm.o
 	${CC} -O2 ${CFLAGS} -o tinymembench main.c util.o asm-opt.o x86-sse2.o arm-neon.o mips-32.o aarch64-asm.o -lm
