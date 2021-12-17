@@ -337,6 +337,10 @@ bench_info *get_asm_framebuffer_benchmarks(void)
 static bench_info aarch64_neon[] =
 {
     { "NEON LDP/STP copy", 0, aligned_block_copy_ldpstp_q_aarch64 },
+    { "NEON LDP/STP copy 64bpt for a76 ", 0, a76_memcpy1},
+    { "NEON LDP/STP copy 128bpt for a76 ", 0, a76_memcpy2 },
+    { "NEON LDP/STP copy 128bpt for a76 2 ", 0, a76_memcpy3 },
+    { "NEON LDP/STP copy 128bpt for a76 3 ", 0, a76_memcpy4 },
     { "NEON LDP/STP copy pldl2strm (32 bytes step)", 0, aligned_block_copy_ldpstp_q_pf32_l2strm_aarch64 },
     { "NEON LDP/STP copy pldl2strm (64 bytes step)", 0, aligned_block_copy_ldpstp_q_pf64_l2strm_aarch64 },
     { "NEON LDP/STP copy pldl1keep (32 bytes step)", 0, aligned_block_copy_ldpstp_q_pf32_l1keep_aarch64 },

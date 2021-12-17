@@ -69,6 +69,88 @@ asm_function aligned_block_copy_ldpstp_q_aarch64
     ret
 .endfunc
 
+asm_function a76_memcpy1
+0:
+    LDP Q3,Q4,[SRC,#0]
+    STP Q3,Q4,[DST,#0]
+    LDP Q3,Q4,[SRC,#32]
+    STP Q3,Q4,[DST,#32]
+    LDP Q3,Q4,[SRC,#64]
+    STP Q3,Q4,[DST,#64]
+    ADD DST,DST,#64
+    ADD SRC,SRC,#64
+    SUBS SIZE,SIZE,#64
+    bgt         0b
+    ret
+.endfunc
+
+asm_function a76_memcpy2
+0:
+    LDP Q3,Q4,[SRC,#0]
+    STP Q3,Q4,[DST,#0]
+    LDP Q3,Q4,[SRC,#32]
+    STP Q3,Q4,[DST,#32]
+    LDP Q3,Q4,[SRC,#64]
+    STP Q3,Q4,[DST,#64]
+    LDP Q3,Q4,[SRC,#96]
+    STP Q3,Q4,[DST,#96]
+    LDP Q3,Q4,[SRC,#128]
+    STP Q3,Q4,[DST,#128]
+    LDP Q3,Q4,[SRC,#160]
+    STP Q3,Q4,[DST,#160]
+    ADD DST,DST,#192
+    ADD SRC,SRC,#192
+    SUBS SIZE,SIZE,#192
+    bgt         0b
+    ret
+.endfunc
+
+asm_function a76_memcpy3
+0:
+   SUBS X2,X2,#192
+   LDP Q3,Q4,[x1,#0]      
+   STP Q3,Q4,[x0,#0]
+   LDP Q3,Q4,[x1,#32]
+   STP Q3,Q4,[x0,#32]   
+   LDP Q3,Q4,[x1,#64]
+   STP Q3,Q4,[x0,#64]
+   LDP Q3,Q4,[x1,#96]
+   STP Q3,Q4,[x0,#96]
+   LDP Q3,Q4,[x1,#128]
+   STP Q3,Q4,[x0,#128]
+   LDP Q3,Q4,[x1,#160]
+   STP Q3,Q4,[x0,#160]
+   ADD X1,X1,#192
+   ADD X0,X0,#192
+   BGT 0b
+   ret
+.endfunc
+
+asm_function a76_memcpy4
+0:
+   SUBS X2,X2,#256
+   LDP Q3,Q4,[x1,#0]      
+   STP Q3,Q4,[x0,#0]
+   LDP Q3,Q4,[x1,#32]
+   STP Q3,Q4,[x0,#32]   
+   LDP Q3,Q4,[x1,#64]
+   STP Q3,Q4,[x0,#64]
+   LDP Q3,Q4,[x1,#96]
+   STP Q3,Q4,[x0,#96]
+   LDP Q3,Q4,[x1,#128]
+   STP Q3,Q4,[x0,#128]
+   LDP Q3,Q4,[x1,#160]
+   STP Q3,Q4,[x0,#160]
+   LDP Q3,Q4,[x1,#192]
+   STP Q3,Q4,[x0,#192]
+   LDP Q3,Q4,[x1,#224]
+   STP Q3,Q4,[x0,#224]
+   ADD X1,X1,#256
+   ADD X0,X0,#256
+   BGT 0b
+   ret
+.endfunc
+
 asm_function aligned_block_copy_ldpstp_q_pf32_l2strm_aarch64
 0:
     prfm        pldl2strm, [SRC, #(PREFETCH_DISTANCE +  0)]

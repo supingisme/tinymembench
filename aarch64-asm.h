@@ -36,6 +36,19 @@ void aligned_block_copy_ldpstp_x_aarch64(int64_t * __restrict dst,
 void aligned_block_copy_ldpstp_q_aarch64(int64_t * __restrict dst,
                                          int64_t * __restrict src,
                                          int                  size);
+void a76_memcpy1(int64_t * __restrict dst,
+                                         int64_t * __restrict src,
+                                         int                  size);
+
+void a76_memcpy2(int64_t * __restrict dst,
+                                       int64_t * __restrict src,
+                                       int                  size);
+void a76_memcpy3(int64_t * __restrict dst,
+                                       int64_t * __restrict src,
+                                       int                  size);
+void a76_memcpy4(int64_t * __restrict dst,
+                                       int64_t * __restrict src,
+                                       int                  size);
 void aligned_block_copy_ld1st1_aarch64(int64_t * __restrict dst,
                                        int64_t * __restrict src,
                                        int                  size);
